@@ -141,12 +141,11 @@
   <div class="tldr-inner">
     <h3>The short version</h3>
     <ul>
-      <li>Your Bible reading, lessons, streaks, and saved verses live on your phone. Nothing about your practice is uploaded.</li>
+      <li>Your lessons, streaks, XP, and saved verses sync to our server under a random anonymous ID so your progress survives reinstalls and follows you to a new phone. We never see your name, email, or any real identity.</li>
       <li>The Bible text itself ships inside the app. No network call is made to read a verse.</li>
-      <li>We collect the minimum we need: a random anonymous user ID, your subscription status, and basic device info for crash reporting.</li>
       <li>We don't show ads in the app and we don't run analytics on your behavior.</li>
       <li>We don't sell your data. Ever.</li>
-      <li>Delete your account from inside the app and your data is wiped from the device immediately.</li>
+      <li>Delete your account from inside the app and your data is wiped from both your device and our server immediately.</li>
       <li>Questions? Email hello@vladgershun.com.</li>
     </ul>
   </div>
@@ -163,12 +162,12 @@
 
 <h3>Anonymous user ID</h3>
 <ul>
-  <li>A random identifier generated on your device the first time you open the app. We never ask for your name, email, or phone number. The ID is used to tie your subscription status and crash reports to a single anonymous user.</li>
+  <li>A random identifier generated on your device the first time you open the app. We never ask for your name, email, or phone number. The ID is used to tie your synced practice data, your subscription status, and crash reports to a single anonymous user. The ID is stored in your iCloud Keychain so the same identity follows you to your other Apple devices.</li>
 </ul>
 
 <h3>Practice data</h3>
 <ul>
-  <li>Lessons completed, streaks, XP, and saved verses are stored locally on your phone. This data is not uploaded to our servers.</li>
+  <li>Your lessons completed, streaks, XP, saved verses, onboarding selections (goals, daily target, preferred translation), and optional display name are stored on your device and also synced to our server so your progress survives a reinstall and follows you across your devices. Every row is tied only to your anonymous user ID. We never see your name, email, or any real identity.</li>
 </ul>
 
 <h3>Device information</h3>
@@ -190,8 +189,9 @@
 <ul>
   <li>We do not collect your name, email address, phone number, or contacts.</li>
   <li>We do not collect health data, location, browsing history, or anything outside the app.</li>
+  <li>We do not access your microphone audio off-device. Speech recognition for the Speak exercise runs entirely on your phone.</li>
   <li>We do not show ads inside the app.</li>
-  <li>We do not record what verses you read or memorize on our servers. That data stays on your device.</li>
+  <li>We do not run third-party analytics, behavioral tracking, or advertising SDKs.</li>
 </ul>
 
 <h2>3. How the Bible content works</h2>
@@ -200,14 +200,17 @@
 <h2>4. Third-party services</h2>
 <p>We use a small number of trusted services to run Manna. Each one only receives the data it needs to do its job:</p>
 <ul>
+  <li><strong>Railway</strong> hosts our Postgres database in the United States. Your synced practice data lives there, attached only to your anonymous user ID. Connections are encrypted in transit.</li>
   <li><strong>RevenueCat</strong> manages subscription status on our behalf. They receive your anonymous user ID and your Apple subscription receipt so the app knows whether you're a paid user. Their privacy policy applies to that flow.</li>
   <li><strong>Apple in-app purchases.</strong> Apple processes Manna subscription payments through the App Store. They handle your payment details and tell us only your subscription status (active, in trial, expired, refunded). We never receive card information, billing addresses, or your Apple ID.</li>
+  <li><strong>iCloud Keychain</strong> (Apple). Your anonymous user ID is stored in your iCloud Keychain so the same identity is available on your other Apple devices signed into the same Apple ID. We never see your Apple ID or iCloud credentials.</li>
 </ul>
 <p>We do not sell your data to anyone, and we do not share it with advertisers, data brokers, or any party not listed above.</p>
 
 <h2>5. How we use your information</h2>
 <ul>
-  <li>To run your local Manna account and remember your progress on your device.</li>
+  <li>To run your Manna account and remember your progress.</li>
+  <li>To sync your progress across your devices and restore it if you reinstall the app.</li>
   <li>To deliver daily verse reminders if you've enabled notifications.</li>
   <li>To know whether you're on a free or paid plan.</li>
   <li>To respond to support requests and keep the app working.</li>
@@ -222,7 +225,8 @@
 <p>To exercise any of these rights, email <a href="mailto:hello@vladgershun.com">hello@vladgershun.com</a>. If you live in the EU, UK, California, or anywhere else with specific privacy laws (GDPR, CCPA, and similar), we honor those rights for everyone, not just users in those regions.</p>
 
 <h2>7. Data retention &amp; deletion</h2>
-<p>Tapping "Delete Account" inside the app wipes every local trace of your practice from the device: lessons, streaks, saved verses, XP, and notification preferences. Your anonymous user ID is also reset, so any future subscription events are attached to a brand new identity.</p>
+<p>Tapping "Delete Account" inside the app wipes every trace of your practice from both your device and our server: lessons, streaks, saved verses, XP, onboarding selections, optional display name, and notification preferences. The server deletion happens first, and only succeeds when every row tied to your anonymous user ID has been removed from our database.</p>
+<p>Your anonymous user ID itself stays in your iCloud Keychain so any future subscription events stay attached to the same anonymous identity. If you also want the ID rotated, uninstall the app and remove the Manna entry from iCloud Keychain in iOS Settings, or email us and we'll walk you through it.</p>
 
 <h2>8. Security</h2>
 <p>We protect your data with industry-standard measures: encrypted connections (HTTPS/TLS) for everything in transit, encrypted storage at rest, and strict access controls. No system is perfect, but we take security seriously and respond quickly to any issue we discover.</p>
